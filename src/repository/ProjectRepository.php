@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Repository.php';
-require_once __DIR__.'/../models/Project.php';
+require_once __DIR__ . '/../models/Project.php';
 
 class ProjectRepository extends Repository
 {
@@ -57,14 +57,27 @@ class ProjectRepository extends Repository
         $stmt->execute();
         $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-         foreach ($projects as $project) {
-             $result[] = new Project(
-                 $project['title'],
-                 $project['description'],
-                 $project['image']
-             );
-         }
+        foreach ($projects as $project) {
+            $result[] = new Project(
+                $project['title'],
+                $project['description'],
+                $project['image']
+            );
+        }
 
         return $result;
+    }
+
+    public function getProjectByTitle(string $searchString)
+    {
+        $searchString = '%' . strtolower($searchString) . '%';
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM projects WHERE LOWER(title) LIKE :search OR LOWER(description) LIKE :search
+        ');
+        $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
