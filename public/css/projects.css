@@ -6,14 +6,14 @@ section {
     overflow: auto;
 }
 
-.projects>div>img {
+.projects > div > img {
     height: 50%;
     width: 100%;
     object-fit: cover;
     border-radius: 1em 1em 0 0;
 }
 
-.projects>div>div {
+.projects > div > div {
     height: 50%;
     margin: 1em;
     color: #2699FB;
@@ -22,7 +22,7 @@ section {
     justify-content: space-around;
 }
 
-.projects>div {
+.projects > div {
     border: 1px solid gray;
     border-radius: 1em 1em 0 0;
     height: 400px;
@@ -37,7 +37,11 @@ section.project-form {
     justify-content: center;
 }
 
-.project-form>form {
+.project-form > form {
     display: flex;
     flex-direction: column;
+}
+
+.social-section > i:hover {
+    cursor: pointer;
 }
