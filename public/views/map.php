@@ -3,11 +3,13 @@
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/projects.css">
+    <link rel="stylesheet" type="text/css" href="public/css/map.css">
 
     <script src="https://kit.fontawesome.com/723297a893.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./public/js/search.js" defer></script>
-    <script type="text/javascript" src="./public/js/statistics.js" defer></script>
-    <script type="text/javascript" src="./public/js/data.js" defer></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <script type="text/javascript" src="./public/js/map.js" defer></script>
+
     <title>PROJECTS</title>
 </head>
 <body>
@@ -42,20 +44,8 @@
                 <a href="/addProject"> <i class="fas fa-plus"></i> add project</a>
             </div>
         </header>
-        <section class="projects">
-            <?php foreach ($projects as $project): ?>
-                <div id="<?= $project->getId(); ?>">
-                    <img src="public/uploads/<?= $project->getImage(); ?>">
-                    <div>
-                        <h2><?= $project->getTitle(); ?></h2>
-                        <p><?= $project->getDescription(); ?></p>
-                        <div class="social-section">
-                            <i class="fas fa-heart"> <?= $project->getLike(); ?></i>
-                            <i class="fas fa-minus-square"> <?= $project->getDislike(); ?></i>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+        <section>
+            <div id='map'></div>
         </section>
     </main>
 </div>

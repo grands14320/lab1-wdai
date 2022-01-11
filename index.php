@@ -13,5 +13,7 @@ Router::post('register', 'SecurityController');
 Router::post('search', 'ProjectController');
 Router::get('like', 'ProjectController');
 Router::get('dislike', 'ProjectController');
+Router::get('map', 'MapController');
+Router::get('places', 'MapController');
 
 Router::run($path);
